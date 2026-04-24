@@ -4,397 +4,218 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vow — Micro Weddings, Beautifully Simple</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 
 :root {
-  --c-bg:       #faf9f7;
-  --c-bg2:      #f3f0eb;
-  --c-bg3:      #ede8e1;
-  --c-ink:      #1a1612;
-  --c-ink2:     #6b5f55;
-  --c-ink3:     #a99a8e;
-  --c-rose:     #b8765a;
-  --c-rose-lt:  #e8d5cb;
-  --c-rose-dk:  #8a4e38;
-  --c-sage:     #6e8870;
-  --c-sage-lt:  #dce8dc;
-  --c-gold:     #c4a46e;
-  --c-line:     rgba(26,22,18,0.08);
-  --r:          2px;
+  --bg:      #fafafa;
+  --bg2:     #f2f2f2;
+  --bg3:     #e8e8e8;
+  --ink:     #0f0f0f;
+  --ink2:    #555;
+  --ink3:    #999;
+  --blue:    #0057FF;   /* THE one color */
+  --blue-lt: #e0eaff;
+  --blue-dk: #003fcc;
+  --line:    rgba(15,15,15,0.09);
   --font-serif: 'Cormorant', serif;
-  --font-sans:  'Jost', sans-serif;
-  --ease:       cubic-bezier(0.4, 0, 0.2, 1);
+  --font-sans:  'DM Sans', sans-serif;
+  --ease: cubic-bezier(0.4,0,0.2,1);
 }
 
-body {
-  font-family: var(--font-sans);
-  background: var(--c-bg);
-  color: var(--c-ink);
-  -webkit-font-smoothing: antialiased;
-}
+body { font-family: var(--font-sans); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
 
-/* ── UTILITY ── */
-.u-tag {
-  font-size: 10px; font-weight: 500; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--c-rose);
-}
-.u-h1 {
-  font-family: var(--font-serif);
-  font-size: clamp(44px, 6vw, 76px);
-  font-weight: 300; line-height: 1.08; color: var(--c-ink);
-  letter-spacing: -0.01em;
-}
-.u-h1 i { font-style: italic; color: var(--c-rose); font-weight: 300; }
-.u-h2 {
-  font-family: var(--font-serif);
-  font-size: clamp(30px, 4vw, 48px);
-  font-weight: 300; line-height: 1.15; color: var(--c-ink);
-  letter-spacing: -0.01em;
-}
-.u-h2 i { font-style: italic; color: var(--c-rose); }
-.u-body { font-size: 15px; font-weight: 300; color: var(--c-ink2); line-height: 1.75; }
-.u-small { font-size: 12px; font-weight: 400; color: var(--c-ink3); line-height: 1.6; }
-.u-line { width: 32px; height: 1px; background: var(--c-rose); display: block; margin: 20px 0; }
-
-/* ── NAV ── */
+/* NAV */
 nav {
   position: fixed; inset: 0 0 auto 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 56px; height: 72px;
-  background: rgba(250,249,247,0.88);
-  backdrop-filter: blur(20px) saturate(1.4);
-  border-bottom: 1px solid var(--c-line);
+  padding: 0 56px; height: 68px;
+  background: rgba(250,250,250,0.92);
+  backdrop-filter: blur(20px) saturate(1.5);
+  border-bottom: 1px solid var(--line);
 }
-.nav-logo {
-  font-family: var(--font-serif);
-  font-size: 20px; font-weight: 400; font-style: italic;
-  color: var(--c-ink); letter-spacing: 0.02em;
-}
-.nav-logo span { color: var(--c-rose); }
+.nav-logo { font-family: var(--font-serif); font-size: 20px; font-weight: 400; font-style: italic; color: var(--ink); letter-spacing: 0.02em; }
+.nav-logo span { color: var(--blue); }
 .nav-links { display: flex; align-items: center; gap: 40px; }
-.nav-links a {
-  font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--c-ink2);
-  text-decoration: none; transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--c-ink); }
-.nav-pill {
-  background: var(--c-ink) !important;
-  color: white !important;
-  padding: 9px 22px; border-radius: 100px;
-  transition: background 0.2s, opacity 0.2s !important;
-}
-.nav-pill:hover { opacity: 0.8; }
+.nav-links a { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink2); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink); }
+.nav-pill { background: var(--ink) !important; color: white !important; padding: 9px 22px; border-radius: 100px; transition: background 0.2s !important; }
+.nav-pill:hover { background: var(--blue) !important; }
 
-/* ── HERO ── */
-.hero {
-  min-height: 100svh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding-top: 72px;
-}
-.hero-left {
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 80px 56px 80px 56px;
-}
-.hero-tag { margin-bottom: 28px; }
-.hero-left .u-h1 { margin-bottom: 24px; }
-.hero-left .u-body { max-width: 400px; margin-bottom: 48px; }
+/* HERO — split layout */
+.hero { min-height: 100svh; padding-top: 68px; display: grid; grid-template-columns: 1fr 1fr; }
+.hero-left { display: flex; flex-direction: column; justify-content: center; padding: 80px 56px; }
+.hero-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue); margin-bottom: 28px; }
+.hero-h1 { font-family: var(--font-serif); font-size: clamp(48px, 6.5vw, 82px); font-weight: 300; line-height: 1.05; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 8px; }
+.hero-h1 i { font-style: italic; color: var(--blue); }
+.hero-sub { font-size: 15px; font-weight: 300; color: var(--ink2); line-height: 1.75; max-width: 400px; margin-bottom: 44px; margin-top: 20px; }
 .hero-actions { display: flex; gap: 16px; align-items: center; }
-.btn-dark {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--c-ink); color: white;
-  padding: 14px 30px; border-radius: 100px;
-  font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
-  text-transform: uppercase; text-decoration: none;
-  transition: opacity 0.2s, transform 0.2s;
-}
-.btn-dark:hover { opacity: 0.8; transform: translateY(-1px); }
-.btn-ghost {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--c-ink2);
-  text-decoration: none; border-bottom: 1px solid var(--c-line);
-  padding-bottom: 2px; transition: color 0.2s;
-}
-.btn-ghost:hover { color: var(--c-ink); }
-.hero-nums {
-  display: flex; gap: 40px; margin-top: 72px;
-  padding-top: 40px; border-top: 1px solid var(--c-line);
-}
-.hero-num-n {
-  font-family: var(--font-serif);
-  font-size: 32px; font-weight: 300; color: var(--c-ink);
-}
-.hero-num-l { font-size: 11px; color: var(--c-ink3); margin-top: 2px; font-weight: 400; }
+.btn-dark { display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: white; padding: 14px 30px; border-radius: 100px; font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+.btn-dark:hover { background: var(--blue); transform: translateY(-1px); }
+.btn-ghost { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink2); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 2px; transition: color 0.2s; }
+.btn-ghost:hover { color: var(--blue); border-color: var(--blue); }
+.hero-nums { display: flex; gap: 40px; margin-top: 64px; padding-top: 36px; border-top: 1px solid var(--line); }
+.hero-num-n { font-family: var(--font-serif); font-size: 30px; font-weight: 300; color: var(--ink); }
+.hero-num-l { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink3); margin-top: 3px; }
 
-.hero-right {
-  background: var(--c-bg2);
-  display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-}
-/* Soft organic background shape */
-.hero-right::before {
-  content: '';
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 70% 60% at 60% 40%, rgba(184,118,90,0.08) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 50% at 30% 70%, rgba(110,136,112,0.06) 0%, transparent 60%);
-}
-.hero-card {
-  position: relative; z-index: 1;
-  background: white;
-  border-radius: 16px;
-  padding: 40px 36px;
-  width: 340px;
-  box-shadow: 0 2px 40px rgba(26,22,18,0.06), 0 1px 4px rgba(26,22,18,0.04);
-}
-.hero-card-tag {
-  font-size: 10px; font-weight: 500; letter-spacing: 0.15em;
-  text-transform: uppercase; color: var(--c-rose); margin-bottom: 20px;
-}
-.hero-card-title {
-  font-family: var(--font-serif);
-  font-size: 22px; font-weight: 400; color: var(--c-ink);
-  margin-bottom: 6px;
-}
-.hero-card-price {
-  font-size: 28px; font-weight: 300; color: var(--c-rose);
-  font-family: var(--font-serif); margin-bottom: 24px;
-}
-.card-divider { height: 1px; background: var(--c-line); margin-bottom: 20px; }
-.card-item {
-  display: flex; align-items: flex-start; gap: 10px;
-  font-size: 12px; color: var(--c-ink2); line-height: 1.5;
-  padding: 6px 0;
-}
-.card-bullet {
-  width: 4px; height: 4px; border-radius: 50%;
-  background: var(--c-rose); flex-shrink: 0; margin-top: 5px;
-}
-.card-cta {
-  display: block; text-align: center; margin-top: 24px;
-  padding: 13px; background: var(--c-rose); color: white; border-radius: 100px;
-  font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
-  text-transform: uppercase; text-decoration: none;
-  transition: background 0.2s;
-}
-.card-cta:hover { background: var(--c-rose-dk); }
-/* Floating accent cards */
-.hero-accent {
-  position: absolute;
-  background: white; border-radius: 12px;
-  padding: 16px 20px;
-  box-shadow: 0 2px 24px rgba(26,22,18,0.07);
-}
-.hero-accent-1 { top: 12%; right: 8%; }
-.hero-accent-2 { bottom: 15%; left: 6%; }
-.accent-n {
-  font-family: var(--font-serif);
-  font-size: 26px; font-weight: 300; color: var(--c-ink);
-}
-.accent-l { font-size: 10px; color: var(--c-ink3); margin-top: 1px; letter-spacing: 0.08em; text-transform: uppercase; }
+.hero-right { background: var(--bg2); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.hero-right::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 55% 40%, rgba(0,87,255,0.06) 0%, transparent 70%); }
+.hero-card { position: relative; z-index: 1; background: white; border-radius: 20px; padding: 40px 36px; width: 340px; box-shadow: 0 4px 48px rgba(0,87,255,0.08), 0 1px 4px rgba(0,0,0,0.04); }
+.hero-card-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); margin-bottom: 18px; }
+.hero-card-title { font-family: var(--font-serif); font-size: 22px; font-weight: 400; color: var(--ink); margin-bottom: 4px; }
+.hero-card-price { font-family: var(--font-serif); font-size: 26px; font-weight: 300; color: var(--blue); margin-bottom: 24px; }
+.card-div { height: 1px; background: var(--line); margin-bottom: 20px; }
+.card-item { display: flex; gap: 10px; font-size: 12px; color: var(--ink2); line-height: 1.5; padding: 5px 0; }
+.card-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--blue); flex-shrink: 0; margin-top: 5px; }
+.card-cta { display: block; text-align: center; margin-top: 24px; padding: 13px; background: var(--blue); color: white; border-radius: 100px; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+.card-cta:hover { background: var(--blue-dk); }
+.hero-accent { position: absolute; background: white; border-radius: 14px; padding: 14px 18px; box-shadow: 0 2px 24px rgba(0,0,0,0.07); }
+.hero-accent-1 { top: 11%; right: 7%; }
+.hero-accent-2 { bottom: 14%; left: 5%; }
+.acc-n { font-family: var(--font-serif); font-size: 24px; font-weight: 300; color: var(--ink); }
+.acc-l { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink3); margin-top: 1px; }
 
-/* ── DIVIDER LINE ── */
-.sec-divider { height: 1px; background: var(--c-line); margin: 0 56px; }
+/* DIVIDER */
+.divider { height: 1px; background: var(--line); margin: 0 56px; }
 
-/* ── HOW IT WORKS ── */
+/* HOW */
 .how { padding: 120px 56px; }
-.how-header { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 80px; }
-.steps-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--c-line); border: 1px solid var(--c-line); border-radius: 12px; overflow: hidden; }
-.step {
-  background: var(--c-bg); padding: 32px 24px;
-  transition: background 0.2s;
-}
-.step:hover { background: white; }
-.step-n {
-  font-family: var(--font-serif);
-  font-size: 36px; font-weight: 300; color: var(--c-rose-lt);
-  margin-bottom: 16px; line-height: 1;
-}
-.step-title { font-size: 13px; font-weight: 500; color: var(--c-ink); margin-bottom: 8px; }
-.step-desc { font-size: 12px; font-weight: 300; color: var(--c-ink2); line-height: 1.65; }
-.step-badge {
-  display: inline-block; margin-top: 12px;
-  font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--c-sage); background: var(--c-sage-lt);
-  padding: 3px 10px; border-radius: 100px;
-}
+.how-header { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; margin-bottom: 72px; }
+.sec-label { font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
+.sec-title { font-family: var(--font-serif); font-size: clamp(28px, 3.8vw, 46px); font-weight: 300; line-height: 1.15; color: var(--ink); }
+.sec-title i { font-style: italic; }
+.sec-body { font-size: 14px; font-weight: 300; color: var(--ink2); line-height: 1.8; }
+.steps { display: grid; grid-template-columns: repeat(5,1fr); border: 1px solid var(--line); }
+.step { padding: 36px 24px; border-right: 1px solid var(--line); transition: background 0.2s; }
+.step:last-child { border-right: none; }
+.step:hover { background: var(--blue); }
+.step:hover .step-n { color: rgba(255,255,255,0.15); }
+.step:hover .step-title, .step:hover .step-desc { color: white; }
+.step:hover .step-badge { background: white; color: var(--blue); }
+.step-n { font-family: var(--font-serif); font-size: 44px; font-weight: 300; font-style: italic; color: var(--bg3); margin-bottom: 18px; line-height: 1; transition: color 0.2s; }
+.step-title { font-size: 12px; font-weight: 500; color: var(--ink); margin-bottom: 8px; transition: color 0.2s; }
+.step-desc { font-size: 12px; font-weight: 300; color: var(--ink2); line-height: 1.65; transition: color 0.2s; }
+.step-badge { display: inline-block; margin-top: 14px; font-size: 9px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink3); background: var(--bg2); padding: 3px 10px; transition: background 0.2s, color 0.2s; }
 
-/* ── PACKAGES ── */
-.packages { background: var(--c-bg2); padding: 120px 56px; }
-.packages-header { text-align: center; margin-bottom: 64px; }
-.packages-header .u-body { max-width: 500px; margin: 0 auto; }
-.pkg-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
-.pkg {
-  background: white; border-radius: 16px;
-  border: 1px solid var(--c-line);
-  overflow: hidden;
-  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
-}
-.pkg:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(26,22,18,0.09); }
-.pkg.featured { border-color: var(--c-rose); border-width: 1.5px; }
-.pkg-band { height: 4px; }
-.pkg-band.essential { background: var(--c-rose-lt); }
-.pkg-band.curated { background: var(--c-rose); }
-.pkg-band.bespoke { background: var(--c-ink); }
-.pkg-inner { padding: 32px 28px; }
-.pkg-eyebrow {
-  font-size: 10px; font-weight: 500; letter-spacing: 0.16em;
-  text-transform: uppercase; margin-bottom: 10px;
-}
-.pkg-eyebrow.e { color: var(--c-ink3); }
-.pkg-eyebrow.c { color: var(--c-rose); }
-.pkg-eyebrow.b { color: var(--c-gold); }
-.pkg-name {
-  font-family: var(--font-serif);
-  font-size: 26px; font-weight: 300; color: var(--c-ink); margin-bottom: 6px;
-}
-.pkg-price {
-  font-family: var(--font-serif);
-  font-size: 22px; font-weight: 300; color: var(--c-rose);
-  margin-bottom: 28px;
-}
-.pkg-div { height: 1px; background: var(--c-line); margin-bottom: 24px; }
-.pkg-item {
-  display: flex; gap: 10px; align-items: flex-start;
-  font-size: 12px; font-weight: 300; color: var(--c-ink2);
-  line-height: 1.55; padding: 5px 0;
-}
-.pkg-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--c-rose); flex-shrink: 0; margin-top: 6px; }
-.pkg-fee { font-size: 11px; color: var(--c-ink3); margin: 20px 0 16px; }
-.pkg-btn {
-  display: block; text-align: center;
-  padding: 13px; border-radius: 100px;
-  font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
-  text-transform: uppercase; text-decoration: none;
-  transition: all 0.2s;
-}
-.pkg-btn.outline { border: 1px solid var(--c-line); color: var(--c-ink2); }
-.pkg-btn.outline:hover { border-color: var(--c-rose); color: var(--c-rose); }
-.pkg-btn.filled { background: var(--c-rose); color: white; }
-.pkg-btn.filled:hover { background: var(--c-rose-dk); }
-.pkg-btn.dark { background: var(--c-ink); color: white; }
-.pkg-btn.dark:hover { opacity: 0.8; }
+/* PACKAGES */
+.packages { background: var(--ink); padding: 120px 56px; }
+.pkg-hd { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
+.pkg-hd .sec-title { color: white; }
+.pkg-hd-right { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.35); max-width: 300px; text-align: right; line-height: 1.7; }
+.pkg-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.06); }
+.pkg { background: var(--ink); padding: 44px 32px; transition: background 0.25s; }
+.pkg:hover { background: #161616; }
+.pkg.featured { background: white; }
+.pkg.featured:hover { background: #f6f6f6; }
+.pkg-num { font-family: var(--font-serif); font-size: 64px; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.04); line-height: 1; margin-bottom: 28px; }
+.pkg.featured .pkg-num { color: rgba(0,0,0,0.04); }
+.pkg-tier { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
+.pkg-tier.e { color: rgba(255,255,255,0.25); }
+.pkg-tier.c { color: var(--blue); }
+.pkg-tier.b { color: rgba(255,255,255,0.25); }
+.pkg-name { font-family: var(--font-serif); font-size: 26px; font-weight: 300; font-style: italic; margin-bottom: 6px; }
+.pkg:not(.featured) .pkg-name { color: white; }
+.pkg.featured .pkg-name { color: var(--ink); }
+.pkg-price { font-family: var(--font-serif); font-size: 17px; font-weight: 300; margin-bottom: 28px; }
+.pkg:not(.featured) .pkg-price { color: var(--ink3); }
+.pkg.featured .pkg-price { color: var(--blue); font-size: 18px; }
+.pkg-ln { height: 1px; margin-bottom: 24px; }
+.pkg:not(.featured) .pkg-ln { background: rgba(255,255,255,0.07); }
+.pkg.featured .pkg-ln { background: var(--line); }
+.pkg-item { display: flex; gap: 10px; align-items: flex-start; font-size: 12px; font-weight: 300; line-height: 1.55; padding: 5px 0; }
+.pkg:not(.featured) .pkg-item { color: rgba(255,255,255,0.4); }
+.pkg.featured .pkg-item { color: #444; }
+.pkg-dot { width: 3px; height: 3px; background: var(--blue); flex-shrink: 0; margin-top: 7px; }
+.pkg-fee { font-size: 10px; margin: 18px 0 16px; }
+.pkg:not(.featured) .pkg-fee { color: rgba(255,255,255,0.18); }
+.pkg.featured .pkg-fee { color: var(--ink3); }
+.pkg-btn { display: block; text-align: center; padding: 12px; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; border-radius: 100px; transition: all 0.2s; }
+.pkg-btn.light { border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.4); }
+.pkg-btn.light:hover { border-color: white; color: white; }
+.pkg-btn.solid { background: var(--blue); color: white; }
+.pkg-btn.solid:hover { background: var(--blue-dk); }
+.pkg-btn.ghost { border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.4); }
+.pkg-btn.ghost:hover { border-color: var(--blue); color: var(--blue); }
 
-/* ── WHY ── */
-.why { padding: 120px 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.why-metrics { display: flex; flex-direction: column; gap: 0; }
-.why-metric { padding: 28px 0; border-bottom: 1px solid var(--c-line); }
-.why-metric:first-child { border-top: 1px solid var(--c-line); }
-.why-metric-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
-.why-metric-n {
-  font-family: var(--font-serif);
-  font-size: 52px; font-weight: 300; color: var(--c-ink);
-}
-.why-metric-n.rose { color: var(--c-rose); }
-.why-metric-l { font-size: 12px; color: var(--c-ink2); max-width: 220px; text-align: right; line-height: 1.5; }
-.why-bar { height: 2px; background: var(--c-bg3); border-radius: 2px; overflow: hidden; }
-.why-bar-fill { height: 100%; background: var(--c-rose); border-radius: 2px; transition: width 1.2s var(--ease); width: 0; }
-.why-bar-fill.sage { background: var(--c-sage); }
-.why-quote {
-  margin-top: 32px;
-  font-family: var(--font-serif);
-  font-size: 15px; font-style: italic;
-  color: var(--c-ink2); line-height: 1.8;
-  padding-left: 20px; border-left: 2px solid var(--c-rose-lt);
-}
-.why-right .u-h2 { margin-bottom: 20px; }
-.why-right .u-body { margin-bottom: 48px; }
-.why-points { display: flex; flex-direction: column; gap: 0; }
-.why-pt { display: flex; gap: 20px; align-items: flex-start; padding: 24px 0; border-bottom: 1px solid var(--c-line); }
-.why-pt:first-child { padding-top: 0; }
+/* WHY */
+.why { padding: 120px 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.why-metrics { display: flex; flex-direction: column; }
+.why-metric { padding: 28px 0; border-bottom: 1px solid var(--line); }
+.why-metric:first-child { border-top: 1px solid var(--line); }
+.why-m-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.why-n { font-family: var(--font-serif); font-size: 52px; font-weight: 300; letter-spacing: -0.02em; line-height: 1; }
+.why-n.blue { color: var(--blue); }
+.why-n.dark { color: var(--ink); }
+.why-ml { font-size: 12px; font-weight: 300; color: var(--ink2); max-width: 200px; text-align: right; line-height: 1.55; }
+.why-bar { height: 1px; background: var(--bg3); }
+.why-bar-fill { height: 100%; background: var(--blue); width: 0; transition: width 1.4s var(--ease); }
+.why-quote { margin-top: 36px; padding: 24px 28px; background: var(--bg2); border-left: 2px solid var(--blue); }
+.why-quote p { font-family: var(--font-serif); font-size: 16px; font-style: italic; color: var(--ink); line-height: 1.7; margin-bottom: 10px; }
+.why-quote cite { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); font-style: normal; }
+.why-right .sec-title { margin-bottom: 18px; }
+.why-right .sec-body { margin-bottom: 44px; }
+.why-pts { display: flex; flex-direction: column; }
+.why-pt { display: flex; gap: 20px; align-items: flex-start; padding: 24px 0; border-bottom: 1px solid var(--line); }
 .why-pt:last-child { border-bottom: none; }
-.why-pt-icon {
-  width: 36px; height: 36px; border-radius: 8px;
-  background: var(--c-bg2); display: flex; align-items: center; justify-content: center;
-  font-size: 16px; flex-shrink: 0;
-}
-.why-pt-t { font-size: 13px; font-weight: 500; color: var(--c-ink); margin-bottom: 4px; }
-.why-pt-d { font-size: 12px; font-weight: 300; color: var(--c-ink2); line-height: 1.65; }
+.why-pt-ico { width: 36px; height: 36px; background: var(--blue-lt); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; border-radius: 8px; }
+.why-pt-t { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.why-pt-d { font-size: 12px; font-weight: 300; color: var(--ink2); line-height: 1.7; }
 
-/* ── PITCH ── */
-.pitch { background: var(--c-ink); padding: 120px 56px; }
-.pitch-header { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 80px; }
-.pitch .u-tag { color: var(--c-gold); }
-.pitch .u-h2 { color: white; }
-.pitch .u-body { color: rgba(255,255,255,0.5); }
-.pitch-nums { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; overflow: hidden; margin-bottom: 64px; }
-.pitch-num { padding: 36px 32px; background: var(--c-ink); }
-.pitch-num-n {
-  font-family: var(--font-serif);
-  font-size: 44px; font-weight: 300; color: var(--c-gold); margin-bottom: 6px;
-}
-.pitch-num-l { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 10px; }
-.pitch-num-d { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.5); line-height: 1.65; }
+/* INVESTOR */
+.investor { background: var(--ink); padding: 120px 56px; }
+.inv-hd { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; margin-bottom: 72px; }
+.investor .sec-label { color: var(--blue); }
+.investor .sec-title { color: white; }
+.investor .sec-body { color: rgba(255,255,255,0.4); }
+.inv-nums { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid rgba(255,255,255,0.06); margin-bottom: 56px; }
+.inv-num { padding: 44px 36px; border-right: 1px solid rgba(255,255,255,0.06); }
+.inv-num:last-child { border-right: none; }
+.inv-num-n { font-family: var(--font-serif); font-size: 48px; font-weight: 300; letter-spacing: -0.02em; color: var(--blue); margin-bottom: 6px; }
+.inv-num-l { font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 10px; }
+.inv-num-d { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.38); line-height: 1.7; }
+.inv-row { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+.inv-sub { font-family: var(--font-serif); font-size: 20px; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+.inv-rev { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,0.04); }
+.inv-rev-item { background: var(--ink); padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; }
+.inv-rev-item:hover { background: #181818; }
+.inv-rev-l { font-size: 11px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+.inv-rev-v { font-family: var(--font-serif); font-size: 22px; font-weight: 300; color: var(--blue); }
+.inv-moat { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,0.04); }
+.inv-moat-item { background: var(--ink); padding: 18px 24px; transition: background 0.2s; }
+.inv-moat-item:hover { background: #181818; }
+.inv-moat-t { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.65); margin-bottom: 4px; }
+.inv-moat-d { font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.28); line-height: 1.6; }
 
-.pitch-sub-title {
-  font-family: var(--font-serif);
-  font-size: 24px; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.7);
-  margin-bottom: 24px;
-}
-.pitch-rev { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 64px; }
-.rev-card { border-radius: 12px; padding: 28px; }
-.rev-card.r1 { background: var(--c-rose); }
-.rev-card.r2 { background: var(--c-sage); }
-.rev-card.r3 { background: rgba(196,164,110,0.15); border: 1px solid rgba(196,164,110,0.25); }
-.rev-l { font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 10px; }
-.rev-n { font-family: var(--font-serif); font-size: 32px; font-weight: 300; color: white; margin-bottom: 8px; }
-.rev-d { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.65; }
-
-.pitch-moat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.moat-card {
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 12px; padding: 24px;
-  background: rgba(255,255,255,0.03);
-}
-.moat-icon { font-size: 18px; margin-bottom: 12px; display: block; }
-.moat-t { font-size: 13px; font-weight: 500; color: white; margin-bottom: 6px; }
-.moat-d { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.45); line-height: 1.65; }
-
-/* ── CTA ── */
-.cta {
-  padding: 140px 56px;
-  text-align: center;
-  background: var(--c-bg);
-  position: relative; overflow: hidden;
-}
-.cta-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(184,118,90,0.1);
-  pointer-events: none;
-}
-.cta-ring.r1 { width: 600px; height: 600px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
-.cta-ring.r2 { width: 900px; height: 900px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
-.cta-ring.r3 { width: 1200px; height: 1200px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+/* CTA */
+.cta { padding: 160px 56px; text-align: center; position: relative; overflow: hidden; }
+.cta-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(0,87,255,0.08); pointer-events: none; }
+.cta-ring.r1 { width: 500px; height: 500px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.cta-ring.r2 { width: 800px; height: 800px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.cta-ring.r3 { width: 1100px; height: 1100px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
 .cta-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
-.cta .u-h2 { margin-bottom: 20px; }
-.cta .u-body { margin-bottom: 40px; }
-.cta-note { margin-top: 20px; font-size: 11px; color: var(--c-ink3); letter-spacing: 0.05em; }
-.cta-actions { display: flex; gap: 16px; justify-content: center; align-items: center; }
+.cta-label { font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue); margin-bottom: 20px; }
+.cta-title { font-family: var(--font-serif); font-size: clamp(40px, 6vw, 80px); font-weight: 300; line-height: 1.05; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 14px; }
+.cta-title i { font-style: italic; color: var(--blue); }
+.cta-sub { font-size: 15px; font-weight: 300; color: var(--ink2); line-height: 1.7; margin-bottom: 44px; }
+.cta-actions { display: flex; gap: 16px; justify-content: center; align-items: center; margin-bottom: 20px; }
+.cta-note { font-size: 10px; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); }
 
-/* ── FOOTER ── */
-footer {
-  border-top: 1px solid var(--c-line);
-  padding: 40px 56px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.foot-logo { font-family: var(--font-serif); font-size: 18px; font-style: italic; color: var(--c-ink); }
+/* FOOTER */
+footer { border-top: 1px solid var(--line); padding: 36px 56px; display: flex; align-items: center; justify-content: space-between; }
+.foot-logo { font-family: var(--font-serif); font-size: 17px; font-style: italic; color: var(--ink); }
 .foot-links { display: flex; gap: 32px; }
-.foot-links a { font-size: 11px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--c-ink3); text-decoration: none; transition: color 0.2s; }
-.foot-links a:hover { color: var(--c-ink); }
-.foot-copy { font-size: 11px; color: var(--c-ink3); }
+.foot-links a { font-size: 10px; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); text-decoration: none; transition: color 0.2s; }
+.foot-links a:hover { color: var(--blue); }
+.foot-copy { font-size: 10px; color: var(--bg3); }
 
-/* ── SCROLL REVEAL ── */
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
-.reveal.d1 { transition-delay: 0.05s; }
-.reveal.d2 { transition-delay: 0.12s; }
-.reveal.d3 { transition-delay: 0.18s; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.85s var(--ease), transform 0.85s var(--ease); }
+.reveal.d1 { transition-delay: 0.08s; }
+.reveal.d2 { transition-delay: 0.15s; }
+.reveal.d3 { transition-delay: 0.22s; }
+.reveal.visible { opacity: 1; transform: none; }
 </style>
 </head>
 <body>
@@ -406,7 +227,7 @@ footer {
     <a href="#how">Process</a>
     <a href="#packages">Packages</a>
     <a href="#why">Why Vow</a>
-    <a href="#pitch">Investors</a>
+    <a href="#investor">Investors</a>
     <a href="#cta" class="nav-pill">Begin</a>
   </div>
 </nav>
@@ -414,9 +235,9 @@ footer {
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <div class="u-tag hero-tag">Micro Wedding Platform</div>
-    <h1 class="u-h1">Your wedding.<br><i>Perfectly small.</i></h1>
-    <p class="u-body">Five questions. Three curated packages. Every vendor booked in 48 hours — without the spreadsheets.</p>
+    <div class="hero-tag">Micro Wedding Platform</div>
+    <h1 class="hero-h1">Your wedding.<br><i>Perfectly small.</i></h1>
+    <p class="hero-sub">Five questions. Three curated packages. Every vendor confirmed in 48 hours — no spreadsheets, no overwhelm.</p>
     <div class="hero-actions">
       <a href="#packages" class="btn-dark">See Packages</a>
       <a href="#how" class="btn-ghost">How it works →</a>
@@ -424,7 +245,7 @@ footer {
     <div class="hero-nums">
       <div>
         <div class="hero-num-n">48%</div>
-        <div class="hero-num-l">of couples want this</div>
+        <div class="hero-num-l">want a micro wedding</div>
       </div>
       <div>
         <div class="hero-num-n">48h</div>
@@ -432,282 +253,246 @@ footer {
       </div>
       <div>
         <div class="hero-num-n">$66B</div>
-        <div class="hero-num-l">market in 2025</div>
+        <div class="hero-num-l">US market 2025</div>
       </div>
     </div>
   </div>
   <div class="hero-right">
-    <!-- Floating stat top-right -->
     <div class="hero-accent hero-accent-1">
-      <div class="accent-n">3</div>
-      <div class="accent-l">Curated Packages</div>
+      <div class="acc-n">3</div>
+      <div class="acc-l">Packages</div>
     </div>
-    <!-- Main card -->
     <div class="hero-card">
       <div class="hero-card-tag">✦ Most Popular</div>
       <div class="hero-card-title">The Curated</div>
       <div class="hero-card-price">$9,000 – $14,000</div>
-      <div class="card-divider"></div>
-      <div class="card-item"><div class="card-bullet"></div>Boutique venue up to 50 guests</div>
-      <div class="card-item"><div class="card-bullet"></div>Photo & video — 6 hrs + highlight reel</div>
-      <div class="card-item"><div class="card-bullet"></div>Full plated dinner & welcome drinks</div>
-      <div class="card-item"><div class="card-bullet"></div>Signature floral arch + table setting</div>
-      <div class="card-item"><div class="card-bullet"></div>Coordinator from first call to last dance</div>
+      <div class="card-div"></div>
+      <div class="card-item"><div class="card-dot"></div>Boutique venue up to 50 guests</div>
+      <div class="card-item"><div class="card-dot"></div>Photo & video — 6 hrs + highlight reel</div>
+      <div class="card-item"><div class="card-dot"></div>Full plated dinner & welcome drinks</div>
+      <div class="card-item"><div class="card-dot"></div>Signature floral arch + table setting</div>
+      <div class="card-item"><div class="card-dot"></div>Coordinator from first call to last dance</div>
       <a href="#cta" class="card-cta">Start Your Quiz</a>
     </div>
-    <!-- Floating stat bottom-left -->
     <div class="hero-accent hero-accent-2">
-      <div class="accent-n">48h</div>
-      <div class="accent-l">Avg. Booking Time</div>
+      <div class="acc-n">48h</div>
+      <div class="acc-l">Avg. Booking Time</div>
     </div>
   </div>
 </section>
 
-<div class="sec-divider"></div>
+<div class="divider"></div>
 
-<!-- HOW IT WORKS -->
+<!-- HOW -->
 <section class="how" id="how">
   <div class="how-header">
     <div class="reveal">
-      <div class="u-tag" style="margin-bottom:16px;">How It Works</div>
-      <h2 class="u-h2">Five steps to<br><i>your perfect day.</i></h2>
+      <div class="sec-label">The Process</div>
+      <div class="sec-title">Five steps.<br><i>One perfect day.</i></div>
     </div>
     <div class="reveal d1">
-      <p class="u-body">No spreadsheets. No vendor rabbit holes. Vow's AI narrows thousands of options to the three packages that are actually right for you.</p>
+      <p class="sec-body">No 40-tab browser sessions. No vendor ghosting. Vow compresses months of research into a single, guided session — then handles everything else.</p>
     </div>
   </div>
-  <div class="steps-grid reveal">
+  <div class="steps reveal">
     <div class="step">
       <div class="step-n">01</div>
       <div class="step-title">Vision Quiz</div>
-      <div class="step-desc">Date, guests, budget, vibe, location. Mobile-first, one screen at a time.</div>
+      <div class="step-desc">Date, guests, budget, vibe, location. Five questions. One screen at a time.</div>
       <span class="step-badge">5 min</span>
     </div>
     <div class="step">
       <div class="step-n">02</div>
       <div class="step-title">AI Packages</div>
-      <div class="step-desc">Instant match — venue, photo, catering, florals & coordinator bundled by style and location.</div>
+      <div class="step-desc">Three matched packages — venue, photo, catering, florals, coordinator bundled instantly.</div>
       <span class="step-badge">Instant</span>
     </div>
     <div class="step">
       <div class="step-n">03</div>
       <div class="step-title">Customize</div>
-      <div class="step-desc">Swap a vendor or add extras. Real-time budget impact on every change.</div>
+      <div class="step-desc">Swap vendors or add extras. Real-time budget impact on every change you make.</div>
       <span class="step-badge">Optional</span>
     </div>
     <div class="step">
       <div class="step-n">04</div>
       <div class="step-title">Book & Sign</div>
-      <div class="step-desc">One contract, one deposit. No chasing vendors. We handle the coordination.</div>
+      <div class="step-desc">One contract, one deposit. We coordinate every vendor on your behalf.</div>
       <span class="step-badge">Seamless</span>
     </div>
     <div class="step">
       <div class="step-n">05</div>
-      <div class="step-title">Your Dashboard</div>
-      <div class="step-desc">Countdown, vendor contacts, RSVP, and timeline — all in one place.</div>
+      <div class="step-title">Dashboard</div>
+      <div class="step-desc">Countdown, vendor contacts, RSVP, timeline — all in one place until the day.</div>
       <span class="step-badge">Ongoing</span>
     </div>
   </div>
 </section>
 
-<div class="sec-divider"></div>
+<div class="divider"></div>
 
 <!-- PACKAGES -->
 <section class="packages" id="packages">
-  <div class="packages-header reveal">
-    <div class="u-tag" style="margin-bottom:14px;">Packages</div>
-    <h2 class="u-h2">Everything included.<br><i>Nothing to figure out.</i></h2>
-    <p class="u-body" style="margin-top:12px;">Every tier bundles all five vendors. Curated for 20–50 guests. Priced with full transparency.</p>
+  <div class="pkg-hd reveal">
+    <div>
+      <div class="sec-label" style="color:rgba(255,255,255,0.3);margin-bottom:12px;">Packages</div>
+      <div class="sec-title" style="color:white;">Everything included.<br><i>Nothing to figure out.</i></div>
+    </div>
+    <div class="pkg-hd-right">Every tier bundles all five vendors. Curated for 20–50 guests. Fully transparent pricing.</div>
   </div>
   <div class="pkg-grid">
     <div class="pkg reveal d1">
-      <div class="pkg-band essential"></div>
-      <div class="pkg-inner">
-        <div class="pkg-eyebrow e">Essential</div>
-        <div class="pkg-name">The Intimate</div>
-        <div class="pkg-price">$5,000 – $8,000</div>
-        <div class="pkg-div"></div>
-        <div class="pkg-item"><div class="pkg-dot"></div>Venue — private room or garden, up to 20</div>
-        <div class="pkg-item"><div class="pkg-dot"></div>Photographer — 4 hrs, 200 edited images</div>
-        <div class="pkg-item"><div class="pkg-dot"></div>Catering — buffet or 3-course plated</div>
-        <div class="pkg-item"><div class="pkg-dot"></div>Florals — bouquet + minimal centerpieces</div>
-        <div class="pkg-item"><div class="pkg-dot"></div>Day-of coordinator (8 hrs)</div>
-        <div class="pkg-fee">Platform fee included · No hidden costs</div>
-        <a href="#cta" class="pkg-btn outline">Get Started</a>
-      </div>
+      <div class="pkg-num">01</div>
+      <div class="pkg-tier e">Essential</div>
+      <div class="pkg-name">The Intimate</div>
+      <div class="pkg-price">$5,000 – $8,000</div>
+      <div class="pkg-ln"></div>
+      <div class="pkg-item"><div class="pkg-dot"></div>Venue — private room or garden, 20 guests</div>
+      <div class="pkg-item"><div class="pkg-dot"></div>Photographer — 4 hrs, 200 edited images</div>
+      <div class="pkg-item"><div class="pkg-dot"></div>Catering — buffet or 3-course plated</div>
+      <div class="pkg-item"><div class="pkg-dot"></div>Florals — bouquet + minimal centerpieces</div>
+      <div class="pkg-item"><div class="pkg-dot"></div>Day-of coordinator (8 hrs)</div>
+      <div class="pkg-fee">Platform fee included · No hidden costs</div>
+      <a href="#cta" class="pkg-btn light">Get Started</a>
     </div>
     <div class="pkg featured reveal d2">
-      <div class="pkg-band curated"></div>
-      <div class="pkg-inner">
-        <div class="pkg-eyebrow c">✦ Most Popular</div>
-        <div class="pkg-name">The Curated</div>
-        <div class="pkg-price">$9,000 – $14,000</div>
-        <div class="pkg-div"></div>
-        <div class="pkg-item"><div class="pkg-dot"></div>Venue — boutique hotel, winery, or estate (50 guests)</div>
-        <div class="pkg-item"><div class="pkg-dot"></div>Photo + Video — 6 hrs, highlight reel</div>
-        <div class="pkg-item"><div class="pkg-dot"></div>Full plated dinner + welcome drinks</div>
-        <div class="pkg-item"><div class="pkg-dot"></div>Signature arch + full table florals</div>
-        <div class="pkg-item"><div class="pkg-dot"></div>Coordinator — 2 planning calls + full day-of</div>
-        <div class="pkg-item"><div class="pkg-dot"></div>Vow wedding website + RSVP management</div>
-        <div class="pkg-fee">Platform fee included · No hidden costs</div>
-        <a href="#cta" class="pkg-btn filled">Choose This</a>
-      </div>
+      <div class="pkg-num">02</div>
+      <div class="pkg-tier c">✦ Most Popular</div>
+      <div class="pkg-name">The Curated</div>
+      <div class="pkg-price">$9,000 – $14,000</div>
+      <div class="pkg-ln"></div>
+      <div class="pkg-item"><div class="pkg-dot"></div>Venue — boutique hotel, winery or estate (50 guests)</div>
+      <div class="pkg-item"><div class="pkg-dot"></div>Photo + Video — 6 hrs, highlight reel included</div>
+      <div class="pkg-item"><div class="pkg-dot"></div>Full plated dinner + welcome drinks</div>
+      <div class="pkg-item"><div class="pkg-dot"></div>Signature arch + full table florals</div>
+      <div class="pkg-item"><div class="pkg-dot"></div>Coordinator — 2 planning calls + full day-of</div>
+      <div class="pkg-item"><div class="pkg-dot"></div>Vow wedding website + RSVP management</div>
+      <div class="pkg-fee">Platform fee included · No hidden costs</div>
+      <a href="#cta" class="pkg-btn solid">Choose This</a>
     </div>
     <div class="pkg reveal d3">
-      <div class="pkg-band bespoke"></div>
-      <div class="pkg-inner">
-        <div class="pkg-eyebrow b">Bespoke</div>
-        <div class="pkg-name">The Bespoke</div>
-        <div class="pkg-price">$15,000+</div>
-        <div class="pkg-div"></div>
-        <div class="pkg-item"><div class="pkg-dot"></div>Venue — private villa, rooftop, or exclusive garden</div>
-        <div class="pkg-item"><div class="pkg-dot"></div>Full-day photo + video, drone + rehearsal dinner</div>
-        <div class="pkg-item"><div class="pkg-dot"></div>Chef's table with custom menu design</div>
-        <div class="pkg-item"><div class="pkg-dot"></div>Full floral & interior design</div>
-        <div class="pkg-item"><div class="pkg-dot"></div>Dedicated planner from contract to cake cut</div>
-        <div class="pkg-item"><div class="pkg-dot"></div>Live streaming + digital guestbook</div>
-        <div class="pkg-fee">Custom quote · White-glove service</div>
-        <a href="#cta" class="pkg-btn dark">Inquire</a>
-      </div>
+      <div class="pkg-num">03</div>
+      <div class="pkg-tier b">Bespoke</div>
+      <div class="pkg-name">The Bespoke</div>
+      <div class="pkg-price">$15,000+</div>
+      <div class="pkg-ln"></div>
+      <div class="pkg-item"><div class="pkg-dot"></div>Venue — private villa, rooftop or exclusive garden</div>
+      <div class="pkg-item"><div class="pkg-dot"></div>Full-day photo + video, drone, rehearsal dinner</div>
+      <div class="pkg-item"><div class="pkg-dot"></div>Chef's table with custom menu design</div>
+      <div class="pkg-item"><div class="pkg-dot"></div>Full floral & interior design</div>
+      <div class="pkg-item"><div class="pkg-dot"></div>Dedicated planner — contract to cake cut</div>
+      <div class="pkg-item"><div class="pkg-dot"></div>Live streaming + digital guestbook</div>
+      <div class="pkg-fee">Custom quote · White-glove service</div>
+      <a href="#cta" class="pkg-btn ghost">Inquire</a>
     </div>
   </div>
 </section>
-
-<div class="sec-divider"></div>
 
 <!-- WHY -->
 <section class="why" id="why">
   <div class="reveal">
     <div class="why-metrics">
       <div class="why-metric">
-        <div class="why-metric-row">
-          <div class="why-metric-n rose">48%</div>
-          <div class="why-metric-l">of couples want a micro wedding</div>
+        <div class="why-m-row">
+          <div class="why-n blue">48%</div>
+          <div class="why-ml">of couples want a micro wedding</div>
         </div>
         <div class="why-bar"><div class="why-bar-fill" data-w="48"></div></div>
       </div>
       <div class="why-metric">
-        <div class="why-metric-row">
-          <div class="why-metric-n">6%</div>
-          <div class="why-metric-l">actually book one — tools don't exist</div>
+        <div class="why-m-row">
+          <div class="why-n dark">6%</div>
+          <div class="why-ml">actually book one — the tools don't exist</div>
         </div>
         <div class="why-bar"><div class="why-bar-fill" data-w="6"></div></div>
       </div>
       <div class="why-metric">
-        <div class="why-metric-row">
-          <div class="why-metric-n rose">74%</div>
-          <div class="why-metric-l">of couples go over budget</div>
+        <div class="why-m-row">
+          <div class="why-n blue">74%</div>
+          <div class="why-ml">of couples exceed their original budget</div>
         </div>
         <div class="why-bar"><div class="why-bar-fill" data-w="74"></div></div>
       </div>
     </div>
     <div class="why-quote">
-      "The industry is simply not built for small weddings."<br>
-      <span style="font-size:12px;font-style:normal;color:var(--c-ink3);">— Mostest CEO, Inc. Magazine 2025</span>
+      <p>"The industry is simply not built for small weddings."</p>
+      <cite>— Mostest CEO, Inc. Magazine 2025</cite>
     </div>
   </div>
   <div class="reveal d1">
-    <div class="u-tag" style="margin-bottom:16px;">Why Vow</div>
-    <h2 class="u-h2">Built for the<br><i>way you actually want to wed.</i></h2>
-    <p class="u-body" style="margin-top:12px;margin-bottom:40px;">The Knot and Zola were designed for 130-person weddings. Vow is the first platform built specifically for couples who want something intimate — and better.</p>
-    <div class="why-points">
+    <div class="sec-label">Why Vow</div>
+    <div class="sec-title" style="margin-bottom:18px;">Built for the way<br><i>you actually want to wed.</i></div>
+    <p class="sec-body" style="margin-bottom:44px;">The Knot and Zola were designed for 130-person weddings. Vow is the first platform built entirely for couples who want something intimate — and better.</p>
+    <div class="why-pts">
       <div class="why-pt">
-        <div class="why-pt-icon">🎯</div>
+        <div class="why-pt-ico">🎯</div>
         <div>
           <div class="why-pt-t">Neutral Recommendations</div>
-          <div class="why-pt-d">We earn on bookings, not ads. Every vendor we suggest is genuinely right for you — not the highest bidder.</div>
+          <div class="why-pt-d">We earn on bookings, not ads. Every vendor suggestion is genuinely right for you — not the highest bidder.</div>
         </div>
       </div>
       <div class="why-pt">
-        <div class="why-pt-icon">⚡</div>
+        <div class="why-pt-ico">⚡</div>
         <div>
           <div class="why-pt-t">48-Hour Planning</div>
-          <div class="why-pt-d">Vow's AI compresses 20+ hours of vendor research into a single session. You approve. We handle the rest.</div>
+          <div class="why-pt-d">Vow compresses 20+ hours of vendor research into a single session. You approve. We handle everything else.</div>
         </div>
       </div>
       <div class="why-pt">
-        <div class="why-pt-icon">🔒</div>
+        <div class="why-pt-ico">🔒</div>
         <div>
           <div class="why-pt-t">One Contract, Total Clarity</div>
-          <div class="why-pt-d">Sign once, pay once. No individual vendor negotiations, no surprise invoices, no fine print.</div>
+          <div class="why-pt-d">Sign once, pay once. No individual negotiations, no surprise invoices, no fine print anywhere.</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="sec-divider"></div>
-
-<!-- PITCH -->
-<section class="pitch" id="pitch">
-  <div class="pitch-header">
+<!-- INVESTOR -->
+<section class="investor" id="investor">
+  <div class="inv-hd">
     <div class="reveal">
-      <div class="u-tag" style="margin-bottom:16px;">For Investors</div>
-      <h2 class="u-h2"><i>A $66B market</i><br>underserved by design.</h2>
+      <div class="sec-label">For Investors</div>
+      <div class="sec-title"><i>A $66B market</i><br>underserved by design.</div>
     </div>
     <div class="reveal d1">
-      <p class="u-body">Existing platforms rely on vendor advertising — making curation structurally impossible. Vow's booking-fee model creates genuine alignment between platform, vendors, and couples.</p>
+      <p class="sec-body">Existing platforms rely on vendor advertising — making genuine curation structurally impossible. Vow's booking-fee model creates alignment between platform, vendors, and couples from day one.</p>
     </div>
   </div>
-  <div class="pitch-nums reveal">
-    <div class="pitch-num">
-      <div class="pitch-num-n">$66B</div>
-      <div class="pitch-num-l">US Market 2025</div>
-      <div class="pitch-num-d">Growing at 6.8% CAGR through 2030. Micro weddings are the fastest-growing segment.</div>
+  <div class="inv-nums reveal">
+    <div class="inv-num">
+      <div class="inv-num-n">$66B</div>
+      <div class="inv-num-l">US Market 2025</div>
+      <div class="inv-num-d">6.8% CAGR through 2030. Micro weddings are the fastest-growing segment with searches at all-time highs.</div>
     </div>
-    <div class="pitch-num">
-      <div class="pitch-num-n">~120K</div>
-      <div class="pitch-num-l">Annual Micro Weddings</div>
-      <div class="pitch-num-d">2.5% capture = 3,000 bookings × $11K avg = $3.3M ARR in Year 1.</div>
+    <div class="inv-num">
+      <div class="inv-num-n">~120K</div>
+      <div class="inv-num-l">Annual Micro Weddings</div>
+      <div class="inv-num-d">2.5% capture = 3,000 bookings × $11K avg = $3.3M ARR in Year 1.</div>
     </div>
-    <div class="pitch-num">
-      <div class="pitch-num-n">42pt</div>
-      <div class="pitch-num-l">Demand–Supply Gap</div>
-      <div class="pitch-num-d">48% want micro weddings. 6% book one. The gap is infrastructure, not desire.</div>
-    </div>
-  </div>
-  <div class="reveal">
-    <div class="pitch-sub-title">Three-layer revenue model</div>
-    <div class="pitch-rev">
-      <div class="rev-card r1">
-        <div class="rev-l">Primary — Transaction</div>
-        <div class="rev-n">8–12%</div>
-        <div class="rev-d">Booking fee charged to vendors on successful matches. Zero cost to couples.</div>
-      </div>
-      <div class="rev-card r2">
-        <div class="rev-l">Recurring — Vendor SaaS</div>
-        <div class="rev-n">$99/mo</div>
-        <div class="rev-d">Calendar, quotes, contracts, reviews. 1,000 vendors = $99K MRR.</div>
-      </div>
-      <div class="rev-card r3">
-        <div class="rev-l">Upsell — Couple Add-ons</div>
-        <div class="rev-n">$49–299</div>
-        <div class="rev-d">AI vow writing, live streaming, VIP coordinator hotline. Natural post-booking upsell.</div>
-      </div>
+    <div class="inv-num">
+      <div class="inv-num-n">42pt</div>
+      <div class="inv-num-l">Demand–Supply Gap</div>
+      <div class="inv-num-d">48% want micro weddings. 6% book one. The gap is infrastructure, not desire.</div>
     </div>
   </div>
-  <div class="reveal d1">
-    <div class="pitch-sub-title">Why this can't be replicated overnight</div>
-    <div class="pitch-moat-grid">
-      <div class="moat-card">
-        <span class="moat-icon">🔒</span>
-        <div class="moat-t">Curated Vendor Network</div>
-        <div class="moat-d">Micro-wedding specialists are invisible on The Knot. We surface and lock in the best ones first.</div>
+  <div class="inv-row reveal">
+    <div>
+      <div class="inv-sub">Revenue model</div>
+      <div class="inv-rev">
+        <div class="inv-rev-item"><div class="inv-rev-l">Transaction fee</div><div class="inv-rev-v">8–12%</div></div>
+        <div class="inv-rev-item"><div class="inv-rev-l">Vendor SaaS / month</div><div class="inv-rev-v">$99</div></div>
+        <div class="inv-rev-item"><div class="inv-rev-l">Couple add-ons</div><div class="inv-rev-v">$49–299</div></div>
+        <div class="inv-rev-item"><div class="inv-rev-l">Year 1 ARR target</div><div class="inv-rev-v">$3.3M</div></div>
       </div>
-      <div class="moat-card">
-        <span class="moat-icon">📊</span>
-        <div class="moat-t">Booking Data Flywheel</div>
-        <div class="moat-d">Every match improves AI accuracy. First-mover advantage compounds with each booking.</div>
-      </div>
-      <div class="moat-card">
-        <span class="moat-icon">🤝</span>
-        <div class="moat-t">Aligned Revenue Model</div>
-        <div class="moat-d">We earn on results, not impressions. Vendors stay because it works. Trust compounds.</div>
-      </div>
-      <div class="moat-card">
-        <span class="moat-icon">💬</span>
-        <div class="moat-t">Referral Viral Loop</div>
-        <div class="moat-d">Intimate weddings = intimate guests who are future couples. $200 referral credit closes the loop.</div>
+    </div>
+    <div>
+      <div class="inv-sub">Why this can't be replicated</div>
+      <div class="inv-moat">
+        <div class="inv-moat-item"><div class="inv-moat-t">Curated Vendor Network</div><div class="inv-moat-d">Micro-wedding specialists invisible on The Knot. We surface and lock them in first.</div></div>
+        <div class="inv-moat-item"><div class="inv-moat-t">Booking Data Flywheel</div><div class="inv-moat-d">Every match improves AI accuracy. First-mover advantage compounds with each booking.</div></div>
+        <div class="inv-moat-item"><div class="inv-moat-t">Aligned Revenue Model</div><div class="inv-moat-d">We earn on results, not impressions. Trust compounds over time.</div></div>
+        <div class="inv-moat-item"><div class="inv-moat-t">Built-in Referral Loop</div><div class="inv-moat-d">Every intimate guest is a future couple. $200 referral credit closes the viral loop.</div></div>
       </div>
     </div>
   </div>
@@ -719,43 +504,40 @@ footer {
   <div class="cta-ring r2"></div>
   <div class="cta-ring r3"></div>
   <div class="cta-inner reveal">
-    <div class="u-tag" style="margin-bottom:18px;">Begin Your Story</div>
-    <h2 class="u-h2">A wedding that's<br><i>just the two of you.</i></h2>
-    <p class="u-body" style="margin-top:14px;margin-bottom:40px;">Take the 5-minute quiz. Get three curated packages. No commitment, no credit card required.</p>
+    <div class="cta-label">Begin Your Story</div>
+    <div class="cta-title">A wedding that's<br><i>just the two of you.</i></div>
+    <p class="cta-sub">Take the 5-minute quiz. Get three curated packages.<br>No commitment, no credit card required.</p>
     <div class="cta-actions">
       <a href="#" class="btn-dark">Start Your Quiz</a>
-      <a href="#pitch" class="btn-ghost">Talk to our team →</a>
+      <a href="#investor" class="btn-ghost">Talk to our team →</a>
     </div>
-    <div class="cta-note">✦ Free to explore &nbsp;·&nbsp; No vendor spam &nbsp;·&nbsp; No credit card</div>
+    <div class="cta-note">Free to explore &nbsp;·&nbsp; No vendor spam &nbsp;·&nbsp; No credit card</div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="foot-logo">Vow ✦</div>
   <div class="foot-links">
     <a href="#how">Process</a>
     <a href="#packages">Packages</a>
     <a href="#why">Why Vow</a>
-    <a href="#pitch">Investors</a>
+    <a href="#investor">Investors</a>
   </div>
   <div class="foot-copy">© 2025 Vow</div>
 </footer>
 
 <script>
-// Scroll reveal
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.classList.add('visible');
-      // Animate bars
       e.target.querySelectorAll('.why-bar-fill[data-w]').forEach(b => {
         b.style.width = b.dataset.w + '%';
       });
       io.unobserve(e.target);
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 </body>
